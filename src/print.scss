@@ -1,0 +1,72 @@
+html, body {
+  @media print {
+    font-size: 12.5px;
+  }
+}
+
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+$display5-size:               2.8rem !default;
+$display5-weight:             300 !default;
+
+$display6-size:               1.5rem !default;
+$display6-bold-size:          1.8rem !default;
+$display6-weight:             300 !default;
+
+.display-5 {
+  @include font-size($display5-size);
+  font-weight: $display5-weight;
+  line-height: 1;
+}
+
+.display-6 {
+  @include font-size($display6-size);
+  font-weight: $display6-weight;
+  line-height: 1;
+  strong {
+    @include font-size($display6-bold-size);
+  }
+}
+
+.text-custom {
+  //color: darkslateblue;
+  color: #333;
+}
+.border-custom {
+  border-color: darkslateblue;
+}
+
+.external {
+  i {
+    display: inline-block;
+    width: 1rem;
+    margin-right: .1rem;
+  }
+  li {
+    display: inline-block;
+    word-break: keep-all;
+    white-space: nowrap;
+    border:none;
+    padding: 0.15rem 1.25rem;
+  }
+  flex-basis: 100%;
+  flex-wrap: wrap;
+  font-size: 1rem;
+}
+section {
+  header {
+    p {
+      &.text-custom {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+article {
+  > p, li {
+    font-size: 1.2rem;
+    margin-bottom: .5rem;
+  }
+}

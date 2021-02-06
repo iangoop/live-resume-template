@@ -1,0 +1,208 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+$display5-size:               1.6rem !default;
+$display5-weight:             400 !default;
+
+$display6-size:               1.5rem !default;
+$display6-bold-size:          1.8rem !default;
+$display6-weight:             300 !default;
+
+$display7-size:               1.2rem !default;
+$display7-weight:             300 !default;
+
+$enable-shadows:              true;
+$enable-rounded:              true;
+$box-shadow-custom:           0 1px 1px rgb(0 0 0 / 15%), 0 2px 2px rgb(0 0 0 / 15%), 0 4px 4px rgb(0 0 0 / 15%), 0 8px 8px rgb(0 0 0 / 15%) !default;
+
+$right-frame-space:           .6rem;
+
+.display-5 {
+  @include font-size($display5-size);
+  font-weight: $display5-weight;
+  line-height: 1;
+}
+
+.display-6 {
+  @include font-size($display6-size);
+  font-weight: $display6-weight;
+  line-height: 1;
+  strong {
+    @include font-size($display6-bold-size);
+  }
+}
+
+.display-7 {
+  @include font-size($display7-size);
+  font-weight: $display7-weight;
+  line-height: 1;
+}
+
+html, body {
+  background: #E7E7E7;
+  @media print {
+    background: #fff;
+  }
+}
+body {
+  margin:2rem;
+  @media print {
+    margin: 0;
+  }
+}
+.sub {
+  color: #696969;
+}
+.main {
+  @include box-shadow($box-shadow-custom);
+}
+.row {
+  @media print {
+    flex-wrap: nowrap;
+  }
+}
+.left {
+  .profile {
+    img {
+      width: 50%;
+      max-width: 142px;
+      border-radius: 50%;
+      @media print {
+        margin-top: 0 !important;
+      }
+    }
+    text-align: center;
+    background: #35406E;
+    @media print {
+      background: inherit;
+    }
+  }
+  section {
+    ul {
+      &#links {
+        li {
+          word-break: keep-all;
+          white-space: nowrap;
+        }
+      }
+      li {
+        i {
+          display: inline-block;
+          width: 1rem;
+          margin-right: .1rem;
+          padding: .2rem 0;
+        }
+        a {
+          color: inherit;
+          @media print {
+            color: #666;
+            text-decoration: none;
+          }
+        }
+        &.hl {
+          color: #F9C784;
+        }
+        font-size: 1rem;
+      }
+      padding: 0;
+      list-style-type: none;
+    }
+    article {
+      header {
+        text-transform: uppercase;
+      }
+      li {
+        i {
+          font-weight: 500;
+          white-space: nowrap;
+        }
+        i, span {
+          color: rgba(255, 255, 255, .6);
+          @media print {
+            color: #EEE;
+          }
+        }
+        span {
+          font-size: .9rem;
+        }
+      }
+    }
+    padding: 0 2rem;
+  }
+  @include border-bottom-left-radius(2px);
+  background: #485696;
+  color: #fff;
+  @media print {
+    background: inherit;
+    color: #666;
+    flex: 0;
+    max-width: none;
+    flex-shrink: 1;
+  }
+  padding:0;
+}
+.left, .profile {
+  @include border-top-left-radius(2px);
+}
+.right {
+  header {
+    p::before {
+      position: absolute;
+      content:'';
+      display: block;
+      height: 3px;
+      width: 100%;
+      top:50%;
+      margin-top:.1rem;
+      padding-right: 3rem;
+      box-sizing: content-box;
+      left: -1.5rem;
+      background: rgba(72, 86, 150, .3);
+    }
+    span {
+      position: relative;
+      padding-right: $right-frame-space;
+      padding-left: $right-frame-space;
+      display: inline-block;
+      background: #fff;
+    }
+    position: relative;
+    color: #35406E;
+  }
+  .content {
+    ul {
+      padding: 1.1rem;
+    }
+    padding: $right-frame-space;
+  }
+  @include border-bottom-right-radius(2px);
+  @include border-top-right-radius(2px);
+  background: #fff;
+  @media print {
+    flex: 0;
+    flex-grow: 1;
+    max-width: none;
+    padding: 0 !important;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  #links, #languages {
+    li {
+      padding-right: 1rem;
+    }
+  }
+  #skills {
+    li {
+      &.float-left {
+        &::after {
+          content:',';
+        }
+        &.end::after {
+          content:'';
+        }
+      }
+    }
+  }
+}
