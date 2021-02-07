@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
     entry: {
@@ -11,6 +11,11 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin(),
+        new CopyPlugin({
+            patterns: [
+                './src/favicon.ico'
+            ]
+        }),
         new HtmlWebpackPlugin({
             template: './index.html',
             excludeChunks: ['print']
@@ -89,7 +94,7 @@ module.exports = {
                 loader: 'html-loader',
             },
             {
-                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                test: /\.(png|svg|jpg|jpeg|gif|ico)$/i,
                 type: 'asset/resource',
             }
         ],
