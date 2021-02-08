@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
+const _ = require('lodash');
 
 module.exports = {
     entry: {
@@ -92,6 +93,18 @@ module.exports = {
             {
                 test: /\.html$/i,
                 loader: 'html-loader',
+                options: {
+                    preprocessor: (content, loaderContext) => {
+                        try {
+                            const compiled = _.template(content);
+                            return compiled(require('./src/data'));
+                        } catch (error) {
+                            loaderContext.emitError(error); //comment if you'd like to bypass the errors
+
+                            return content;
+                        }
+                    }
+                }
             },
             {
                 test: /\.(png|svg|jpg|jpeg|gif|ico)$/i,
